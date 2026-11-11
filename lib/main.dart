@@ -12,12 +12,16 @@ import 'widgets/bottom_nav_bar.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setPreferredOrientations(
-      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
-  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-    statusBarColor: Colors.transparent,
-    statusBarIconBrightness: Brightness.dark,
-  ));
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
+  SystemChrome.setSystemUIOverlayStyle(
+    const SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      statusBarIconBrightness: Brightness.dark,
+    ),
+  );
   runApp(const ShopEasyApp());
 }
 
@@ -57,19 +61,10 @@ class _AppShellState extends State<AppShell> {
       body: IndexedStack(
         index: _currentIndex,
         children: [
-          HomeScreen(
-            appState: _appState,
-            onNavTap: _onNavTap,
-          ),
-          CategoriesScreen(
-            appState: _appState,
-            onNavTap: _onNavTap,
-          ),
+          HomeScreen(appState: _appState, onNavTap: _onNavTap),
+          CategoriesScreen(appState: _appState, onNavTap: _onNavTap),
           FavoritesScreen(appState: _appState),
-          CartScreen(
-            appState: _appState,
-            onGoHome: () => _onNavTap(0),
-          ),
+          CartScreen(appState: _appState, onGoHome: () => _onNavTap(0)),
           const ProfileScreen(),
         ],
       ),

@@ -14,8 +14,7 @@ final List<Product> sampleProducts = [
         'Featuring advanced noise cancellation, 30-hour battery life, and '
         'ultra-comfortable memory foam ear cushions for all-day wear.',
     features: ['Deep Bass', '30h Battery', 'Noise Cancel', 'Foldable'],
-    imageUrl:
-        'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400',
+    imagePath: 'assets/images/headphones.png',
     discountPercent: 38,
   ),
   Product(
@@ -31,8 +30,7 @@ final List<Product> sampleProducts = [
         'Monitor heart rate, sleep patterns, and fitness goals from your wrist. '
         'Compatible with iOS and Android.',
     features: ['Heart Rate', 'GPS', 'Waterproof', '7-Day Battery'],
-    imageUrl:
-        'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400',
+    imagePath: 'assets/images/smartwatch.png',
     discountPercent: 38,
   ),
   Product(
@@ -48,8 +46,7 @@ final List<Product> sampleProducts = [
         'Multiple compartments, padded laptop sleeve (up to 15.6"), and ergonomic '
         'shoulder straps for maximum comfort.',
     features: ['Waterproof', 'Laptop Slot', 'USB Port', '30L Capacity'],
-    imageUrl:
-        'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400',
+    imagePath: 'assets/images/backpack.png',
     discountPercent: 40,
   ),
   Product(
@@ -65,8 +62,7 @@ final List<Product> sampleProducts = [
         'responsive cushioning, and a sleek design make these perfect for everyday '
         'wear. Available in multiple colors.',
     features: ['Lightweight', 'Breathable', 'Non-slip', 'Stylish'],
-    imageUrl:
-        'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400',
+    imagePath: 'assets/images/sneakers.png',
     discountPercent: 33,
   ),
   Product(
@@ -81,8 +77,7 @@ final List<Product> sampleProducts = [
         'Portable 360-degree surround sound speaker with deep bass and crisp highs. '
         'IPX7 waterproof rating and 12-hour playtime make it perfect for any adventure.',
     features: ['360° Sound', 'Waterproof', '12h Play', 'USB-C Charge'],
-    imageUrl:
-        'https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=400',
+    imagePath: 'assets/images/Bluetooth-Speaker.jfif',
     discountPercent: 33,
   ),
   Product(
@@ -97,8 +92,7 @@ final List<Product> sampleProducts = [
         'UV400 polarized sunglasses with a classic aviator frame. Scratch-resistant '
         'lenses and lightweight titanium frame for all-day comfort.',
     features: ['UV400', 'Polarized', 'Lightweight', 'Unisex'],
-    imageUrl:
-        'https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=400',
+    imagePath: 'assets/images/Sun-Glasses.png',
     discountPercent: 37,
   ),
   Product(
@@ -113,8 +107,7 @@ final List<Product> sampleProducts = [
         'A luxurious fragrance with top notes of bergamot and lemon, heart notes of '
         'jasmine and rose, and a warm base of sandalwood and musk. Long-lasting 12+ hours.',
     features: ['Long Lasting', 'Floral & Musk', '100ml', 'Alcohol-Free'],
-    imageUrl:
-        'https://images.unsplash.com/photo-1541643600914-78b084683702?w=400',
+    imagePath: 'assets/images/Perfume.jfif',
     discountPercent: 36,
   ),
   Product(
@@ -130,8 +123,7 @@ final List<Product> sampleProducts = [
         '12-cup capacity, built-in grinder, and a keep-warm plate. Supports '
         'multiple brew strengths.',
     features: ['12-Cup', 'Built-in Grinder', 'Keep Warm', 'Programmable'],
-    imageUrl:
-        'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=400',
+    imagePath: 'assets/images/Coffee-Maker.jfif',
     discountPercent: 35,
   ),
 ];

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../data/app_state.dart';
 import '../data/app_theme.dart';
+import '../widgets/product_image.dart';
 
 class CartScreen extends StatelessWidget {
   final AppState appState;
@@ -12,7 +13,29 @@ class CartScreen extends StatelessWidget {
     required this.onGoHome,
   });
 
-  void _showOrderSuccess(BuildContext context) {
+  Future<void> _handleCheckout(BuildContext context) async {
+    // Show loading indicator dialog
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (_) => const Center(
+        child: CircularProgressIndicator(color: AppTheme.primary),
+      ),
+    );
+
+    // Call ASP.NET Core API
+    final result = await appState.checkoutCart();
+
+    if (context.mounted) {
+      Navigator.of(context).pop(); // dismiss loading
+      _showOrderSuccess(context, result);
+    }
+  }
+
+  void _showOrderSuccess(BuildContext context, Map<String, dynamic> result) {
+    final orderId = result['orderId']?.toString() ?? 'ORD-SUCCESS';
+    final message = result['message'] as String? ?? 'Order placed successfully!';
+
     showDialog(
       context: context,
       barrierDismissible: false,
@@ -42,13 +65,28 @@ class CartScreen extends StatelessWidget {
                     fontWeight: FontWeight.w800,
                     color: AppTheme.textPrimary),
               ),
-              const SizedBox(height: 8),
-              const Text(
-                'Your order has been successfully placed!\n'
-                'You will receive a confirmation shortly.',
+              const SizedBox(height: 6),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                decoration: BoxDecoration(
+                  color: AppTheme.primaryLight,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Text(
+                  'Order ID: $orderId',
+                  style: const TextStyle(
+                    color: AppTheme.primary,
+                    fontWeight: FontWeight.w700,
+                    fontSize: 12,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 10),
+              Text(
+                message,
                 textAlign: TextAlign.center,
-                style: TextStyle(
-                    color: AppTheme.textSecondary, height: 1.5),
+                style: const TextStyle(
+                    color: AppTheme.textSecondary, height: 1.4),
               ),
             ],
           ),
@@ -121,19 +159,11 @@ class CartScreen extends StatelessWidget {
                             // Image
                             ClipRRect(
                               borderRadius: BorderRadius.circular(12),
-                              child: Image.network(
-                                product.imageUrl,
+                              child: ProductImage(
+                                imagePath: product.imagePath,
                                 width: 80,
                                 height: 80,
                                 fit: BoxFit.cover,
-                                errorBuilder: (_, __, ___) => Container(
-                                  width: 80,
-                                  height: 80,
-                                  color: AppTheme.primaryLight,
-                                  child: const Icon(
-                                      Icons.image_not_supported_outlined,
-                                      color: AppTheme.primary),
-                                ),
                               ),
                             ),
                             const SizedBox(width: 12),
@@ -280,7 +310,7 @@ class CartScreen extends StatelessWidget {
                     SizedBox(
                       width: double.infinity,
                       child: ElevatedButton.icon(
-                        onPressed: () => _showOrderSuccess(context),
+                        onPressed: () => _handleCheckout(context),
                         icon: const Icon(Icons.payment_rounded,
                             size: 20),
                         label: Text(

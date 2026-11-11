@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../data/app_state.dart';
 import '../data/app_theme.dart';
 import '../models/product.dart';
+import '../widgets/product_image.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
   final Product product;
@@ -112,24 +113,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
               background: Stack(
                 fit: StackFit.expand,
                 children: [
-                  Image.network(
-                    product.imageUrl,
+                  ProductImage(
+                    imagePath: product.imagePath,
                     fit: BoxFit.cover,
-                    errorBuilder: (_, __, ___) => Container(
-                      color: AppTheme.primaryLight,
-                      child: const Icon(Icons.image_not_supported_outlined,
-                          size: 80, color: AppTheme.primary),
-                    ),
-                    loadingBuilder: (_, child, loadingProgress) {
-                      if (loadingProgress == null) return child;
-                      return Container(
-                        color: AppTheme.primaryLight,
-                        child: const Center(
-                          child: CircularProgressIndicator(
-                              color: AppTheme.primary),
-                        ),
-                      );
-                    },
                   ),
                   // gradient overlay
                   const DecoratedBox(

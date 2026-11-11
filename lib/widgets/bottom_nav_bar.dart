@@ -25,7 +25,7 @@ class AppBottomNavBar extends StatelessWidget {
             color: Color(0x1A000000),
             blurRadius: 16,
             offset: Offset(0, -4),
-          )
+          ),
         ],
       ),
       child: BottomNavigationBar(
@@ -83,8 +83,7 @@ class _CartIcon extends StatelessWidget {
                 color: AppTheme.accent,
                 shape: BoxShape.circle,
               ),
-              constraints:
-                  const BoxConstraints(minWidth: 16, minHeight: 16),
+              constraints: const BoxConstraints(minWidth: 16, minHeight: 16),
               child: Text(
                 count > 99 ? '99+' : '$count',
                 style: const TextStyle(
@@ -117,8 +116,11 @@ class CartBadge extends StatelessWidget {
         child: Stack(
           clipBehavior: Clip.none,
           children: [
-            const Icon(Icons.shopping_bag_outlined,
-                color: AppTheme.textPrimary, size: 26),
+            const Icon(
+              Icons.shopping_bag_outlined,
+              color: AppTheme.textPrimary,
+              size: 26,
+            ),
             if (count > 0)
               Positioned(
                 top: -4,
@@ -129,8 +131,10 @@ class CartBadge extends StatelessWidget {
                     color: AppTheme.accent,
                     shape: BoxShape.circle,
                   ),
-                  constraints:
-                      const BoxConstraints(minWidth: 17, minHeight: 17),
+                  constraints: const BoxConstraints(
+                    minWidth: 17,
+                    minHeight: 17,
+                  ),
                   child: Text(
                     '$count',
                     style: const TextStyle(

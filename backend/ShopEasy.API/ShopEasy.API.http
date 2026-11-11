@@ -1,0 +1,52 @@
+@ShopEasy.API_HostAddress = http://localhost:5091
+
+### 1. Get all products
+GET {{ShopEasy.API_HostAddress}}/api/products
+Accept: application/json
+
+### 2. Get product by ID
+GET {{ShopEasy.API_HostAddress}}/api/products/1
+Accept: application/json
+
+### 3. Search products by keyword
+GET {{ShopEasy.API_HostAddress}}/api/products/search?query=watch
+Accept: application/json
+
+### 4. Search products with category filter
+GET {{ShopEasy.API_HostAddress}}/api/products/search?query=&category=Electronics
+Accept: application/json
+
+### 5. Get categories
+GET {{ShopEasy.API_HostAddress}}/api/products/categories
+Accept: application/json
+
+### 6. Checkout cart simulation
+POST {{ShopEasy.API_HostAddress}}/api/orders/checkout
+Content-Type: application/json
+Accept: application/json
+
+{
+  "items": [
+    {
+      "productId": "1",
+      "productName": "Wireless Headphones",
+      "unitPrice": 49.99,
+      "quantity": 1
+    },
+    {
+      "productId": "2",
+      "productName": "Smart Watch",
+      "unitPrice": 79.99,
+      "quantity": 1
+    }
+  ],
+  "customer": {
+    "fullName": "Youssef Elsayed",
+    "email": "youssef@example.com",
+    "address": "123 Nile Avenue",
+    "city": "Cairo"
+  },
+  "subtotal": 129.98,
+  "shipping": 0.0,
+  "total": 129.98
+}

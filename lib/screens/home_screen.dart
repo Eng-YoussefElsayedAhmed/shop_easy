@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../data/app_state.dart';
 import '../data/app_theme.dart';
-import '../data/products_data.dart';
 import '../models/product.dart';
 import '../screens/product_details_screen.dart';
 import '../screens/search_screen.dart';
@@ -34,9 +33,18 @@ class _HomeScreenState extends State<HomeScreen> {
     'Bags',
   ];
 
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      widget.appState.loadProducts();
+    });
+  }
+
   List<Product> get _filteredProducts {
-    if (_selectedCategory == 'All') return sampleProducts;
-    return sampleProducts
+    final list = widget.appState.products;
+    if (_selectedCategory == 'All') return list;
+    return list
         .where((p) => p.category == _selectedCategory)
         .toList();
   }
@@ -58,7 +66,10 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: AppTheme.background,
       body: SafeArea(
-        child: CustomScrollView(
+        child: RefreshIndicator(
+          color: AppTheme.primary,
+          onRefresh: widget.appState.loadProducts,
+          child: CustomScrollView(
           slivers: [
             // ── App Bar ────────────────────────────────────────────────
             SliverAppBar(
@@ -300,7 +311,8 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
-    );
+    ),
+  );
   }
 }
 

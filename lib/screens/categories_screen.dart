@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../data/app_state.dart';
 import '../data/app_theme.dart';
-import '../data/products_data.dart';
 
 class CategoriesScreen extends StatefulWidget {
   final AppState appState;
@@ -37,7 +36,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
           final name = cat['name'] as String;
           final icon = cat['icon'] as IconData;
           final color = Color(cat['color'] as int);
-          final count = sampleProducts
+          final count = widget.appState.products
               .where((p) => p.category == name)
               .length;
 

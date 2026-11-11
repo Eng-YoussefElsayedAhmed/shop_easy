@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../data/app_state.dart';
 import '../data/app_theme.dart';
-import '../data/products_data.dart';
 import '../models/product.dart';
 import '../screens/product_details_screen.dart';
 import '../widgets/product_card.dart';
@@ -48,10 +47,12 @@ class _SearchScreenState extends State<SearchScreen> {
   }
 
   List<Product> get _results {
-    return sampleProducts.where((p) {
+    final source = widget.appState.products;
+    return source.where((p) {
       final matchesQuery = _query.isEmpty ||
           p.name.toLowerCase().contains(_query.toLowerCase()) ||
-          p.category.toLowerCase().contains(_query.toLowerCase());
+          p.category.toLowerCase().contains(_query.toLowerCase()) ||
+          p.description.toLowerCase().contains(_query.toLowerCase());
       final matchesFilter =
           _selectedFilter == 'All' || p.category == _selectedFilter;
       return matchesQuery && matchesFilter;

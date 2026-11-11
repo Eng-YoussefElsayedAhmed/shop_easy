@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../data/app_theme.dart';
 import '../data/app_state.dart';
 import '../models/product.dart';
+import 'product_image.dart';
 
 class ProductCard extends StatelessWidget {
   final Product product;
@@ -32,28 +33,11 @@ class ProductCard extends StatelessWidget {
                 ClipRRect(
                   borderRadius: const BorderRadius.vertical(
                       top: Radius.circular(16)),
-                  child: Image.network(
-                    product.imageUrl,
+                  child: ProductImage(
+                    imagePath: product.imagePath,
                     height: 140,
                     width: double.infinity,
                     fit: BoxFit.cover,
-                    errorBuilder: (_, __, ___) => Container(
-                      height: 140,
-                      color: AppTheme.primaryLight,
-                      child: const Icon(Icons.image_not_supported_outlined,
-                          color: AppTheme.primary, size: 40),
-                    ),
-                    loadingBuilder: (_, child, loadingProgress) {
-                      if (loadingProgress == null) return child;
-                      return Container(
-                        height: 140,
-                        color: AppTheme.primaryLight,
-                        child: const Center(
-                          child: CircularProgressIndicator(
-                              color: AppTheme.primary, strokeWidth: 2),
-                        ),
-                      );
-                    },
                   ),
                 ),
                 // Discount badge

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../data/app_state.dart';
 import '../data/app_theme.dart';
 import '../screens/product_details_screen.dart';
+import '../widgets/product_image.dart';
 
 class FavoritesScreen extends StatelessWidget {
   final AppState appState;
@@ -48,18 +49,11 @@ class FavoritesScreen extends StatelessWidget {
                   contentPadding: const EdgeInsets.all(12),
                   leading: ClipRRect(
                     borderRadius: BorderRadius.circular(12),
-                    child: Image.network(
-                      product.imageUrl,
+                    child: ProductImage(
+                      imagePath: product.imagePath,
                       width: 70,
                       height: 70,
                       fit: BoxFit.cover,
-                      errorBuilder: (_, __, ___) => Container(
-                        width: 70,
-                        height: 70,
-                        color: AppTheme.primaryLight,
-                        child: const Icon(Icons.image_not_supported_outlined,
-                            color: AppTheme.primary),
-                      ),
                     ),
                   ),
                   title: Text(
