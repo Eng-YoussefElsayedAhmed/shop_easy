@@ -17,18 +17,44 @@ class ProductImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) {
+    final cleanPath = imagePath.trim();
+
+    if (cleanPath.startsWith('http://') || cleanPath.startsWith('https://')) {
       return Image.network(
-        imagePath,
+        cleanPath,
         width: width,
         height: height,
         fit: fit,
+        loadingBuilder: (context, child, loadingProgress) {
+          if (loadingProgress == null) return child;
+          final totalBytes = loadingProgress.expectedTotalBytes;
+          final downloaded = loadingProgress.cumulativeBytesLoaded;
+          return Container(
+            width: width,
+            height: height,
+            color: AppTheme.primaryLight,
+            child: Center(
+              child: SizedBox(
+                width: 28,
+                height: 28,
+                child: CircularProgressIndicator(
+                  value: totalBytes != null && totalBytes > 0
+                      ? downloaded / totalBytes
+                      : null,
+                  strokeWidth: 2.5,
+                  color: AppTheme.primary,
+                ),
+              ),
+            ),
+          );
+        },
         errorBuilder: (_, __, ___) => _errorPlaceholder(),
       );
     }
 
+    // Local asset support
     return Image.asset(
-      imagePath,
+      cleanPath,
       width: width,
       height: height,
       fit: fit,
@@ -42,10 +68,24 @@ class ProductImage extends StatelessWidget {
       height: height,
       color: AppTheme.primaryLight,
       child: const Center(
-        child: Icon(
-          Icons.shopping_bag_outlined,
-          color: AppTheme.primary,
-          size: 32,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              Icons.shopping_bag_outlined,
+              color: AppTheme.primary,
+              size: 32,
+            ),
+            SizedBox(height: 4),
+            Text(
+              'ShopEasy',
+              style: TextStyle(
+                color: AppTheme.primary,
+                fontSize: 10,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+          ],
         ),
       ),
     );

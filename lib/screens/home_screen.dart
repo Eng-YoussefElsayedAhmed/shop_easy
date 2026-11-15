@@ -24,14 +24,14 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   String _selectedCategory = 'All';
 
-  final List<String> _categories = [
-    'All',
-    'Electronics',
-    'Fashion',
-    'Home & Living',
-    'Beauty',
-    'Bags',
-  ];
+  List<String> get _categories {
+    final cats = <String>{'All'};
+    for (final p in widget.appState.products) {
+      if (p.category.isNotEmpty) cats.add(p.category);
+    }
+    cats.addAll(['Electronics', 'Fashion', 'Home & Living', 'Beauty', 'Bags']);
+    return cats.toList();
+  }
 
   @override
   void initState() {

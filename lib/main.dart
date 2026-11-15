@@ -8,10 +8,12 @@ import 'screens/categories_screen.dart';
 import 'screens/favorites_screen.dart';
 import 'screens/cart_screen.dart';
 import 'screens/profile_screen.dart';
+import 'services/http_overrides.dart';
 import 'widgets/bottom_nav_bar.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
+  setupHttpOverrides();
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
