@@ -35,7 +35,7 @@ class ProductCard extends StatelessWidget {
                       top: Radius.circular(16)),
                   child: ProductImage(
                     imagePath: product.imagePath,
-                    height: 140,
+                    height: 115,
                     width: double.infinity,
                     fit: BoxFit.cover,
                   ),
@@ -89,9 +89,8 @@ class ProductCard extends StatelessWidget {
               ],
             ),
 
-            // ── Info ───────────────────────────────────────────────────
             Padding(
-              padding: const EdgeInsets.all(10),
+              padding: const EdgeInsets.all(8),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -100,36 +99,36 @@ class ProductCard extends StatelessWidget {
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
-                      fontSize: 13,
+                      fontSize: 12,
                       fontWeight: FontWeight.w600,
                       color: AppTheme.textPrimary,
                       height: 1.3,
                     ),
                   ),
-                  const SizedBox(height: 4),
+                  const SizedBox(height: 3),
                   // Rating row
                   Row(
                     children: [
                       const Icon(Icons.star_rounded,
-                          color: AppTheme.starColor, size: 13),
+                          color: AppTheme.starColor, size: 12),
                       const SizedBox(width: 2),
                       Text(
                         product.rating.toStringAsFixed(1),
                         style: const TextStyle(
-                          fontSize: 11,
+                          fontSize: 10,
                           color: AppTheme.textSecondary,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
-                      const SizedBox(width: 4),
+                      const SizedBox(width: 3),
                       Text(
                         '(${product.reviews})',
                         style: const TextStyle(
-                            fontSize: 11, color: AppTheme.textHint),
+                            fontSize: 10, color: AppTheme.textHint),
                       ),
                     ],
                   ),
-                  const SizedBox(height: 6),
+                  const SizedBox(height: 5),
                   // Price row
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -140,7 +139,7 @@ class ProductCard extends StatelessWidget {
                           Text(
                             '\$${product.price.toStringAsFixed(2)}',
                             style: const TextStyle(
-                              fontSize: 14,
+                              fontSize: 13,
                               fontWeight: FontWeight.w700,
                               color: AppTheme.primary,
                             ),
@@ -149,7 +148,7 @@ class ProductCard extends StatelessWidget {
                             Text(
                               '\$${product.oldPrice!.toStringAsFixed(2)}',
                               style: const TextStyle(
-                                fontSize: 11,
+                                fontSize: 10,
                                 decoration: TextDecoration.lineThrough,
                                 color: AppTheme.textHint,
                               ),
@@ -173,13 +172,13 @@ class ProductCard extends StatelessWidget {
                           );
                         },
                         child: Container(
-                          padding: const EdgeInsets.all(7),
+                          padding: const EdgeInsets.all(6),
                           decoration: BoxDecoration(
                             color: AppTheme.primary,
-                            borderRadius: BorderRadius.circular(10),
+                            borderRadius: BorderRadius.circular(8),
                           ),
                           child: const Icon(Icons.add,
-                              color: Colors.white, size: 16),
+                              color: Colors.white, size: 14),
                         ),
                       ),
                     ],
